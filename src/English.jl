@@ -16,5 +16,6 @@ module English
 using Reexport
 
 include("articulate.jl")
+include("numeric.jl")
 
 end # module
