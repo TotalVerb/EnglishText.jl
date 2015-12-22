@@ -12,7 +12,13 @@ CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License. =#
 
 using English
-using Base.Test
+
+if VERSION >= v"0.5.0-dev+7720"
+    using Base.Test
+else
+    using BaseTestNext
+    Test = BaseTestNext
+end
 
 @testset "Articles" begin
     @test indefinite("pig") == "a"
