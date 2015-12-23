@@ -13,7 +13,7 @@ specific language governing permissions and limitations under the License. =#
 
 using English
 
-if VERSION >= v"0.5.0-dev+7720"
+if VERSION ≥ v"0.5.0-dev+7720"
     using Base.Test
 else
     using BaseTestNext
@@ -30,7 +30,7 @@ end
     @test indefinite("NSA") == "an"
 end
 
-@testset "Numeric" begin
+@testset "Int → Eng" begin
     @test english(0) == "zero"
     @test english(1) == "one"
     @test english(2) == "two"
@@ -66,4 +66,24 @@ end
     @test english(1000000000) == "one billion"
     @test english(BigInt(10)^21) == "one sextillion"
     @test english(BigInt(10)^63) == "one vigintillion"
+end
+
+@testset "Int ← Eng" begin
+    for i in 0:10
+        @test unenglish(Int, english(i)) == i
+    end
+
+    for i in 100:37:900
+        @test unenglish(Int, english(i)) == i
+    end
+
+    for i in 3:8
+        @test unenglish(Int, english(10^i)) == 10^i
+        @test unenglish(Int, english(10^i + 85)) == 10^i + 85
+    end
+
+    for i in 9:63
+        @test unenglish(BigInt, english(big(10)^i)) == big(10)^i
+        @test unenglish(BigInt, english(big(10)^i - 85)) == big(10)^i - 85
+    end
 end

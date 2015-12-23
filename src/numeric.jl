@@ -13,7 +13,7 @@ specific language governing permissions and limitations under the License. =#
 
 @reexport module Numeric
 
-export english
+export english, unenglish
 
 const ONES = [
     "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
@@ -29,6 +29,31 @@ const POWERS = [
     "undecillion", "duodecillion", "tredecillion", "quattuordecillion",
     "quindecillion", "sexdecillion", "septendecillion", "octodecillion",
     "novemdecillion", "vigintillion"]
+
+function reverse_word_lookup(ones, teens, tens)
+    result = Dict{ASCIIString, Int}()
+    for (i, o) in enumerate(ones)
+        result[o] = i
+    end
+    for (i, o) in enumerate(teens)
+        result[o] = 10 + i
+    end
+    for (i, o) in enumerate(tens)
+        result[o] = i * 10
+    end
+    result
+end
+
+function reverse_power_lookup(powers)
+    result = Dict{ASCIIString, BigInt}()
+    for (i, o) in enumerate(powers)
+        result[o] = BigInt(1000)^i
+    end
+    result
+end
+
+const REVERSE_WORD = reverse_word_lookup(ONES, TEENS, TENS)
+const REVERSE_POWER = reverse_power_lookup(POWERS)
 
 
 """Convert \$n\$ to English, given that \$0 < n < 100\$."""
@@ -74,6 +99,34 @@ function english(n::Integer)
         end
         join(reverse(result), " ")
     end
+end
+
+"""
+    unenglish(T <: Integer, data::AbstractString) → T
+
+Convert `data` to an integral type. This function has the guarantee that
+`unenglish(Int, english(x)) == x`, modulo any type differences. It is not
+guaranteed to work well or throw exceptions on other inputs.
+"""
+function unenglish{T<:Integer}(::Type{T}, data::AbstractString)
+    words = split(data)
+    bigpart::T = zero(T)
+    smallpart::T = zero(T)
+    for word in words
+        pieces = split(word, '-')
+        for piece in pieces
+            piece = lowercase(piece)
+            if haskey(REVERSE_WORD, piece)
+                smallpart += T(REVERSE_WORD[piece])
+            elseif piece == "hundred"
+                smallpart *= T(100)
+            elseif haskey(REVERSE_POWER, piece)
+                bigpart += T(REVERSE_POWER[piece] * smallpart)
+                smallpart = zero(T)
+            end
+        end
+    end
+    bigpart + smallpart
 end
 
 end  # module Numeric
