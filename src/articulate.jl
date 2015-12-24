@@ -38,11 +38,7 @@ end
 function process(rawdata, default)
     pd = ArticleTable(default, Dict())
     if haskey(rawdata, "article")
-        if rawdata["article"] == "a"
-            pd.article = a
-        elseif rawdata["article"] == "an"
-            pd.article = an
-        else error("articles.json has an invalid article: $v") end
+        pd.article = rawdata["article"] == "a" ? a : an
     end
     for (c, v) in rawdata
         if c ≠ "article"
