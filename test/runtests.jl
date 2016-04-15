@@ -87,3 +87,15 @@ end
         @test unenglish(BigInt, english(big(10)^i - 85)) == big(10)^i - 85
     end
 end
+
+@testset "Pluralize" begin
+    @test pluralize("pig") == "pigs"
+    @test pluralize("iron") == "irons"
+    @test pluralize("unicorn") == "unicorns"
+    @test pluralize("money") == "monies"
+    @test pluralize("agency") == "agencies"
+    @test pluralize("suffix") == "suffixes"    # "suffices" not standard Latin
+    @test pluralize("octopus") == "octopodes"  # "octopi" not standard Latin
+    @test pluralize("vertex") == "vertices"
+    @test pluralize("focus") == "foci"
+end
