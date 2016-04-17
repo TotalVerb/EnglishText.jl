@@ -38,8 +38,10 @@ const IRREGULAR_ANG = Dict(
     "brother" => "brothers",
     "child" => "children",
     "cow" => "cows",
+    "die" => "dice",
     "ephemeris" => "ephemerides",
     "genie" => "genies",
+    "graffito" => "graffiti",
     "money" => "moneys",
     "mongoose" => "mongooses",
     "mythos" => "mythoi",
@@ -53,6 +55,7 @@ const IRREGULAR_CLS = merge(IRREGULAR_ANG, Dict(
     "beef" => "beeves",
     "brother" => "brethren",
     "cow" => "kine",
+    "die" => "dice",
     "genie" => "genii",
     "money" => "monies",
     "octopus" => "octopodes"))
@@ -166,8 +169,8 @@ const A21 = Set([
 
 # table A.22 -us to -uses | -i
 const A22 = Set([
-    "focus", "nimbus", "succubus", "fungus", "nucleolus", "torus", "genius",
-    "radius", "umbilicus", "incubus", "stylus", "uterus"])
+    "cactus", "focus", "nimbus", "succubus", "fungus", "nucleolus", "torus",
+    "genius", "radius", "umbilicus", "incubus", "stylus", "uterus"])
 
 # table A.23 -us to -uses | -us
 const A23 = Set([
@@ -204,9 +207,18 @@ const SUFFIX_COMMON = Dict(
     r"x$" => (1, "xes"),
     r"[aeiou]y$" => (1, "ys"),
     r"[A-Z].*y$" => (1, "ys"),
-    r"y$" => (1, "ies"))
+    r"y$" => (1, "ies"),
+    r"[aeo]lf$" => (1, "ves"),
+    r"[^d]eaf$" => (1, "ves"),
+    r"arf$" => (1, "ves"),
+    r"[nlw]ife" => (2, "ves"))
 
-stem(word, suffixlen) = word[1:chr2ind(word, length(word) - suffixlen)]
+function fromend(word, suffixlen)
+    offset = length(word) - suffixlen
+    offset == 0 ? 0 : chr2ind(word, offset)
+end
+
+stem(word, suffixlen) = word[1:fromend(word, suffixlen)]
 stem(word, suffixlen, rest) = stem(word, suffixlen) * rest
 
 function suffix_inflect(table, word)

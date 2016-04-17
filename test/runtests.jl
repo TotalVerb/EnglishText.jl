@@ -89,13 +89,32 @@ end
 end
 
 @testset "Pluralize" begin
-    @test pluralize("pig") == "pigs"
-    @test pluralize("iron") == "irons"
-    @test pluralize("unicorn") == "unicorns"
-    @test pluralize("money") == "monies"
     @test pluralize("agency") == "agencies"
-    @test pluralize("suffix") == "suffixes"    # "suffices" not standard Latin
-    @test pluralize("octopus") == "octopodes"  # "octopi" not standard Latin
-    @test pluralize("vertex") == "vertices"
+    @test pluralize("bacterium") == "bacteria"
+    @test pluralize("bison") == "bison"
+    @test pluralize("cactus") == "cacti"
+    @test pluralize("child") == "children"
+    @test pluralize("corps") == "corps"
+    @test pluralize("cow") == "kine"
+    @test pluralize("datum") == "data"
+    @test pluralize("deer") == "deer"
+    @test pluralize("diagnosis") == "diagnoses"
+    @test pluralize("die") == "dice"
+    @test pluralize("elf") == "elves"
+    @test pluralize("fish") == "fish"
     @test pluralize("focus") == "foci"
+    @test pluralize("foot") == "feet"
+    @test pluralize("formula") == "formulae"
+    @test pluralize("genius") == "genii"
+    @test pluralize("goose") == "geese"
+    @test pluralize("graffito") == "graffiti"
+    @test pluralize("iron") == "irons"
+    @test pluralize("louse") == "lice"
+    @test pluralize("man") == "men"
+    @test pluralize("money") == "monies"
+    @test pluralize("octopus") == "octopodes"  # "octopi" not standard Latin
+    @test pluralize("pig") == "pigs"
+    @test pluralize("suffix") == "suffixes"    # "suffices" not standard Latin
+    @test pluralize("unicorn") == "unicorns"
+    @test pluralize("vertex") == "vertices"
 end
