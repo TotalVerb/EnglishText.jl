@@ -31,7 +31,7 @@ const POWERS = [
     "novemdecillion", "vigintillion"]
 
 function reverse_word_lookup(ones, teens, tens)
-    result = Dict{ASCIIString, Int}()
+    result = Dict{String, Int}()
     for (i, o) in enumerate(ones)
         result[o] = i
     end
@@ -45,7 +45,7 @@ function reverse_word_lookup(ones, teens, tens)
 end
 
 function reverse_power_lookup(powers)
-    result = Dict{ASCIIString, BigInt}()
+    result = Dict{String, BigInt}()
     for (i, o) in enumerate(powers)
         result[o] = BigInt(1000)^i
     end
@@ -87,7 +87,7 @@ function english(n::Integer)
     if n == 0
         "zero"
     else
-        result = ASCIIString[]
+        result = String[]
         segments = digits(n, 1000)
         if segments[1] ≠ 0
             push!(result, ltt(segments[1]))
