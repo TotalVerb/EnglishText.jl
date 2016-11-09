@@ -2,13 +2,14 @@
 
 [![Build Status](https://travis-ci.org/TotalVerb/English.jl.svg?branch=master)](https://travis-ci.org/TotalVerb/English.jl)
 
-Currently this package includes three features:
+Currently this package includes four features:
 
  - `indefinite` for finding the right indefinite article to use
  - `english` for converting a positive integer to an English-language wordy
    representation, and the inverse function `unenglish` to convert the wordy
    representation back.
  - `pluralize` to pluralize a noun
+ - `ItemList` to create a list of objects
 
 ```julia
 julia> using English
@@ -27,4 +28,7 @@ julia> unenglish(Int, "sixteen")
 
 julia> pluralize("fox")
 "foxes"
+
+julia> ItemList(["apples", "oranges"])
+apples and oranges
 ```
