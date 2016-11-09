@@ -6,25 +6,40 @@
 
 @reexport module ItemLists
 
-export ItemList
+export ItemList, Sum, Conjunction, Disjunction
 
-immutable ItemList
+immutable Sum end
+immutable Conjunction end
+immutable Disjunction end
+
+immutable ItemList{T}
     objs
+    connective::T
 end
+
+ItemList(objs) = ItemList(objs, Sum())
+
+identityof(::Sum) = "no objects"
+identityof(::Conjunction) = "unremarkable"
+identityof(::Disjunction) = "impossible"
+
+wordfor(::Sum) = "and"
+wordfor(::Conjunction) = "and"
+wordfor(::Disjunction) = "or"
 
 function Base.show(io::IO, list::ItemList)
     objs = collect(list.objs)
     if length(objs) == 0
-        print(io, "no objects")
+        print(io, identityof(list.connective))
     elseif length(objs) == 1
         print(io, objs[1])
     elseif length(objs) == 2
-        print(io, objs[1], " and ", objs[2])
+        print(io, objs[1], " ", wordfor(list.connective), " ", objs[2])
     elseif length(objs) ≥ 3
         for obj in @view objs[1:end-1]
             print(io, obj, ", ")
         end
-        print(io, "and ", objs[end])
+        print(io, wordfor(list.connective), " ", objs[end])
     end
 end
 

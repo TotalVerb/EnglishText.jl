@@ -31,4 +31,7 @@ julia> pluralize("fox")
 
 julia> ItemList(["apples", "oranges"])
 apples and oranges
+
+julia> ItemList(["animal", "plant"], Disjunction())
+animal or plant
 ```
