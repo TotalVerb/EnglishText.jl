@@ -100,3 +100,8 @@ end
     @test pluralize("unicorn") == "unicorns"
     @test pluralize("vertex") == "vertices"
 end
+
+@test "Wrap Lines" begin
+    @test wrap("Hello, World!") == "Hello, World!"
+    @test wrap("Hello, World!", 6) == "Hello,\nWorld!"
+end
