@@ -100,3 +100,12 @@ end
     @test pluralize("unicorn") == "unicorns"
     @test pluralize("vertex") == "vertices"
 end
+
+@testset "List" begin
+    @test string(ItemList([])) == "no objects"
+    @test string(ItemList(["apples"])) == "apples"
+    @test string(ItemList(["apples", "oranges"])) == "apples and oranges"
+    @test string(ItemList(["apples", "oranges", "grapefruit"])) ==
+        "apples, oranges, and grapefruit"
+    @test string(ItemList(english.(1:5))) == "one, two, three, four, and five"
+end
