@@ -1,3 +1,4 @@
+using Compat
 using English
 
 using Base.Test
@@ -102,3 +103,4 @@ end
 end
 
 include("list.jl")
+include("text.jl")
