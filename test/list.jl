@@ -1,4 +1,4 @@
-@testset "List" begin
+@toptestset "List" begin
 
 @testset "Sum" begin
     @test string(ItemList([])) == "no objects"

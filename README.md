@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/TotalVerb/English.jl.svg?branch=master)](https://travis-ci.org/TotalVerb/English.jl)
 
-Currently this package includes five features:
+Currently this package includes six features:
 
  - `indefinite` for finding the right indefinite article to use
  - `english` for converting a positive integer to an English-language wordy
@@ -10,6 +10,7 @@ Currently this package includes five features:
    representation back.
  - `pluralize` to pluralize a noun
  - `ItemList` to create a list of objects
+ - `ItemQuantity` to associate a noun with a number
  - `sentences` to iterate over the sentences of a text
 
 ```julia
@@ -35,6 +36,12 @@ apples and oranges
 
 julia> ItemList(["animal", "plant"], Disjunction())
 animal or plant
+
+julia> ItemQuantity(2, "apple")
+2 apples
+
+julia> ItemQuantity(1, "standard canine")
+1 standard canine
 
 julia> for s in sentences("Hi! Iterate over sentences. OK?")
            println(s)

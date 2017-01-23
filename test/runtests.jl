@@ -3,7 +3,14 @@ using English
 
 using Base.Test
 
-@testset "Articles" begin
+macro toptestset(args...)
+    quote
+        ts = Base.Test.@testset($(map(esc, args)...))
+        Base.Test.print_test_results(ts)
+    end
+end
+
+@toptestset "Articles" begin
     @test indefinite("pig") == "a"
     @test indefinite("iron") == "an"
     @test indefinite("unicorn") == "a"
@@ -13,7 +20,7 @@ using Base.Test
     @test indefinite("NSA") == "an"
 end
 
-@testset "Int → Eng" begin
+@toptestset "Int → Eng" begin
     @test english(0) == "zero"
     @test english(1) == "one"
     @test english(2) == "two"
@@ -51,7 +58,7 @@ end
     @test english(BigInt(10)^63) == "one vigintillion"
 end
 
-@testset "Int ← Eng" begin
+@toptestset "Int ← Eng" begin
     for i in 0:10
         @test unenglish(Int, english(i)) == i
     end
@@ -71,7 +78,7 @@ end
     end
 end
 
-@testset "Pluralize" begin
+@toptestset "Pluralize" begin
     @test pluralize("agency") == "agencies"
     @test pluralize("bacterium") == "bacteria"
     @test pluralize("bison") == "bison"
@@ -104,3 +111,4 @@ end
 
 include("list.jl")
 include("text.jl")
+include("quantity.jl")
