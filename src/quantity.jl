@@ -8,12 +8,24 @@ module Quantities
 
 using ..Pluralize
 
-export ItemQuantity
+export ItemQuantity, isnothing
 
-immutable ItemQuantity{T <: Integer}
-    count::T
+"""
+    ItemQuantity(n::Integer, item::AbstractString)
+
+Represents a quantity of `n` occurrences of `item`.
+"""
+immutable ItemQuantity
+    count::Int
     noun::String
 end
+
+"""
+    isnothing(quantity::ItemQuantity)
+
+Return `true` if the given `ItemQuantity` represents no items.
+"""
+isnothing(quantity::ItemQuantity) = quantity.count == 0
 
 function Base.show(io::IO, quantity::ItemQuantity)
     print(io, quantity.count)
@@ -27,5 +39,5 @@ end
 
 end
 
-import .Quantities: ItemQuantity
-export ItemQuantity
+import .Quantities: ItemQuantity, isnothing
+export ItemQuantity, isnothing
