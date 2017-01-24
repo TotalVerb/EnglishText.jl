@@ -20,7 +20,7 @@ const RAW_DATA = JSON.parsefile(
 
 type ArticleTable
     article::Article
-    prefices::Dict{Char, ArticleTable}
+    prefixes::Dict{Char, ArticleTable}
 end
 
 function process(rawdata, default)
@@ -31,7 +31,7 @@ function process(rawdata, default)
     for (c, v) in rawdata
         if c ≠ "article"
             @assert length(c) == 1
-            pd.prefices[c[1]] = process(v, pd.article)
+            pd.prefixes[c[1]] = process(v, pd.article)
         end
     end
     pd
@@ -39,13 +39,28 @@ end
 
 const PROCESSED_DATA = process(RAW_DATA, a)
 
+"""
+    indefinite(word)
+
+Determine the correct indefinite article, from “a” or “an”, for the given noun.
+
+```jldoctest
+julia> using English
+
+julia> indefinite("hour")
+"an"
+
+julia> indefinite("hand")
+"a"
+```
+"""
 function indefinite(word, table=PROCESSED_DATA)
     if isempty(word)
         table.article |> string
     else
         f, r = first(word), word[nextind(word, 1):end]
-        if haskey(table.prefices, f)
-            indefinite(r, table.prefices[f])
+        if haskey(table.prefixes, f)
+            indefinite(r, table.prefixes[f])
         else
             table.article |> string
         end

@@ -5,8 +5,13 @@ using Base.Test
 
 macro toptestset(args...)
     quote
-        ts = Base.Test.@testset($(map(esc, args)...))
-        Base.Test.print_test_results(ts)
+        @static if VERSION < v"0.6-"
+            Base.Test.@testset($(map(esc, args)...))
+        else
+            Base.Test.print_test_results(
+                Base.Test.@testset($(map(esc, args)...))
+            )
+        end
     end
 end
 

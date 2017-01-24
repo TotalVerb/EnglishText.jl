@@ -50,7 +50,9 @@ const REVERSE_WORD = reverse_word_lookup(ONES, TEENS, TENS)
 const REVERSE_POWER = reverse_power_lookup(POWERS)
 
 
-"""Convert \$n\$ to English, given that \$0 < n < 100\$."""
+"""
+Convert ``n`` to English, given that ``0 < n < 100``.
+"""
 function lth(n::Integer)
     if n < 10
         ONES[n]
@@ -64,7 +66,9 @@ function lth(n::Integer)
 end
 
 
-"""Convert \$n\$ to English, given that \$0 < n < 1000\$."""
+"""
+Convert ``n`` to English, given that ``0 < n < 1000``.
+"""
 function ltt(n::Integer)
     if n < 100
         lth(n)
@@ -76,7 +80,16 @@ function ltt(n::Integer)
 end
 
 
-"""Convert \$n\$ to English, given that \$0 \\le n < 10^{66}\$."""
+"""
+Convert ``n`` to English, given that ``0 \\le n < 10^{66}``.
+
+```jldoctest
+julia> using English
+
+julia> english(16)
+"sixteen"
+```
+"""
 function english(n::Integer)
     if n == 0
         "zero"
@@ -101,6 +114,13 @@ end
 Convert `data` to an integral type. This function has the guarantee that
 `unenglish(Int, english(x)) == x`, modulo any type differences. It is not
 guaranteed to work well or throw exceptions on other inputs.
+
+```jldoctest
+julia> using English
+
+julia> unenglish(Int, "sixteen")
+16
+```
 """
 function unenglish{T<:Integer}(::Type{T}, data::AbstractString)
     words = split(data)
