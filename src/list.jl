@@ -12,6 +12,25 @@ immutable Sum end
 immutable Conjunction end
 immutable Disjunction end
 
+"""
+    ItemList(objects, connective=Sum())
+
+A list of items or adjectives, which supports printing in standard English
+format.
+
+```jldoctest
+julia> using English
+
+julia> ItemList(["apples", "oranges"])
+apples and oranges
+
+julia> ItemList(["animal", "plant"], Disjunction())
+animal or plant
+
+julia> ItemList(["red", "blue", "white"], Conjunction())
+red, blue, and white
+```
+"""
 immutable ItemList{T}
     objs
     connective::T

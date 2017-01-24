@@ -65,6 +65,17 @@ Return an iterable over the `Sentence`s contained within `text`. Sentences are
 identified naïvely; that is, every full stop, exclamation mark, or question
 mark is considered to delimit a sentence. This is of course prone to error, as
 some full stops are used for abbreviations and not for delimiting sentences.
+
+```jldoctest
+julia> using English
+
+julia> for s in sentences("Hi! Iterate over sentences. OK?")
+           println(s)
+       end
+Hi!
+Iterate over sentences.
+OK?
+```
 """
 sentences(text::AbstractString) = Sentences(text)
 

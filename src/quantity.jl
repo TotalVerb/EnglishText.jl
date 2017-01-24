@@ -14,6 +14,16 @@ export ItemQuantity, isnothing
     ItemQuantity(n::Integer, item::AbstractString)
 
 Represents a quantity of `n` occurrences of `item`.
+
+```jldoctest
+julia> using English
+
+julia> ItemQuantity(2, "apple")
+2 apples
+
+julia> ItemQuantity(1, "standard canine")
+1 standard canine
+```
 """
 immutable ItemQuantity
     count::Int
