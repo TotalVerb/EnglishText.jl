@@ -1,4 +1,4 @@
-@toptestset "Text" begin
+@testset "Text" begin
 
 @testset "sentences" begin
     @test [string(x) for x = sentences("Hello, world!")] ==

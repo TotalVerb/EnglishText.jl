@@ -3,19 +3,7 @@ using English
 
 using Base.Test
 
-macro toptestset(args...)
-    quote
-        @static if VERSION < v"0.6-"
-            Base.Test.@testset($(map(esc, args)...))
-        else
-            Base.Test.print_test_results(
-                Base.Test.@testset($(map(esc, args)...))
-            )
-        end
-    end
-end
-
-@toptestset "Articles" begin
+@testset "Articles" begin
     @test indefinite("pig") == "a"
     @test indefinite("iron") == "an"
     @test indefinite("unicorn") == "a"
@@ -25,7 +13,7 @@ end
     @test indefinite("NSA") == "an"
 end
 
-@toptestset "Int → Eng" begin
+@testset "Int → Eng" begin
     @test english(0) == "zero"
     @test english(1) == "one"
     @test english(2) == "two"
@@ -63,7 +51,7 @@ end
     @test english(BigInt(10)^63) == "one vigintillion"
 end
 
-@toptestset "Int ← Eng" begin
+@testset "Int ← Eng" begin
     for i in 0:10
         @test unenglish(Int, english(i)) == i
     end
@@ -83,7 +71,7 @@ end
     end
 end
 
-@toptestset "Pluralize" begin
+@testset "Pluralize" begin
     @test pluralize("agency") == "agencies"
     @test pluralize("bacterium") == "bacteria"
     @test pluralize("bison") == "bison"

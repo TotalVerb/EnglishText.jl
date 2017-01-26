@@ -1,4 +1,4 @@
-@toptestset "Quantities" begin
+@testset "Quantities" begin
 
 @testset "Singular" begin
     @test string(ItemQuantity(1, "apple")) == "1 apple"
