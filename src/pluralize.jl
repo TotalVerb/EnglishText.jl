@@ -82,7 +82,8 @@ const PRONOUNS_ANG = Dict(
     "they" => "they",
     "her" => "them",
     "him" => "them",
-    "it" => "them",
+# unfortunately we have no way of telling this from the it above
+#    "it" => "them",
     "them" => "them",
     "herself" => "themselves",
     "himself" => "themselves",
