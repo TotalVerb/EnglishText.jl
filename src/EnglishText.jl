@@ -1,7 +1,5 @@
 module EnglishText
 
-using Reexport
-
 # code to text
 include("articulate.jl")
 include("list.jl")

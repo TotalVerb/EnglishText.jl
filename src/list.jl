@@ -4,7 +4,7 @@
     and the word "and". There is currently no option to remove the Oxford comma.
 ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――=#
 
-@reexport module ItemLists
+module ItemLists
 
 export ItemList, Sum, Conjunction, Disjunction
 
@@ -63,3 +63,6 @@ function Base.show(io::IO, list::ItemList)
 end
 
 end
+
+import .ItemLists: ItemList, Sum, Conjunction, Disjunction
+export ItemList, Sum, Conjunction, Disjunction

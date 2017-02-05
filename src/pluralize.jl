@@ -12,7 +12,7 @@
     pluralization. In Proceedings of the Second Annual Perl Conference.
 ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――=#
 
-@reexport module Pluralize
+module Pluralize
 
 export pluralize
 
@@ -313,3 +313,6 @@ function pluralize(word; classical=true)
 end
 
 end  # module Pluralize
+
+import .Pluralize: pluralize
+export pluralize

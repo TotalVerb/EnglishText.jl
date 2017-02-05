@@ -7,7 +7,7 @@
     <https://github.com/EamonNerbonne/a-vs-an>.
 ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――=#
 
-@reexport module Articulate
+module Articulate
 
 export indefinite
 
@@ -68,3 +68,6 @@ function indefinite(word, table=PROCESSED_DATA)
 end
 
 end  # module Articulate
+
+import .Articulate: indefinite
+export indefinite

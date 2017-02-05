@@ -5,7 +5,7 @@
     of dubious real-world utility.
 ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――=#
 
-@reexport module Numeric
+module Numeric
 
 export english, unenglish
 
@@ -144,3 +144,6 @@ function unenglish{T<:Integer}(::Type{T}, data::AbstractString)
 end
 
 end  # module Numeric
+
+import .Numeric: english, unenglish
+export english, unenglish
