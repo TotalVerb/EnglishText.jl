@@ -1,4 +1,4 @@
-module English
+module EnglishText
 
 using Reexport
 

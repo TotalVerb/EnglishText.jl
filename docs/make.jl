@@ -1,8 +1,8 @@
-using Documenter, English
+using Documenter, EnglishText
 
 makedocs(
     format = :html,
-    sitename = "English.jl",
+    sitename = "EnglishText.jl",
     authors = "Fengyang Wang",
     pages = [
         "index.md"
@@ -10,7 +10,7 @@ makedocs(
 )
 
 deploydocs(
-    repo   = "github.com/TotalVerb/English.jl.git",
+    repo   = "github.com/TotalVerb/EnglishText.jl.git",
     target = "build",
     deps   = nothing,
     make   = nothing,

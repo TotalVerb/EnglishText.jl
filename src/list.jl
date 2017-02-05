@@ -19,7 +19,7 @@ A list of items or adjectives, which supports printing in standard English
 format.
 
 ```jldoctest
-julia> using English
+julia> using EnglishText
 
 julia> ItemList(["apples", "oranges"])
 apples and oranges

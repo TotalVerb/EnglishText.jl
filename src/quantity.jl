@@ -16,7 +16,7 @@ export ItemQuantity, isnothing
 Represents a quantity of `n` occurrences of `item`.
 
 ```jldoctest
-julia> using English
+julia> using EnglishText
 
 julia> ItemQuantity(2, "apple")
 2 apples

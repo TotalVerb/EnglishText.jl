@@ -233,7 +233,7 @@ Pluralize a word (given in canonical capitalization) using heuristics and lists
 of exceptions.
 
 ```jldoctest
-julia> using English
+julia> using EnglishText
 
 julia> pluralize("fox")
 "foxes"

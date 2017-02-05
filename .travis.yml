@@ -8,4 +8,4 @@ julia:
     - nightly
 after_success:
     - julia -e 'Pkg.add("Documenter")'
-    - julia -e 'cd(Pkg.dir("English")); include(joinpath("docs", "make.jl"))'
+    - julia -e 'cd(Pkg.dir("EnglishText")); include(joinpath("docs", "make.jl"))'

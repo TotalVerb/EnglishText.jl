@@ -14,7 +14,7 @@ export indefinite
 using JSON
 
 const RAW_DATA = JSON.parsefile(
-    joinpath(Pkg.dir("English"), "data", "articles.json"))
+    joinpath(Pkg.dir("EnglishText"), "data", "articles.json"))
 
 @enum Article a an
 
@@ -45,7 +45,7 @@ const PROCESSED_DATA = process(RAW_DATA, a)
 Determine the correct indefinite article, from “a” or “an”, for the given noun.
 
 ```jldoctest
-julia> using English
+julia> using EnglishText
 
 julia> indefinite("hour")
 "an"

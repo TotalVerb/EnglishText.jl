@@ -1,4 +1,4 @@
-# English.jl Documentation
+# EnglishText.jl Documentation
 
 ```@contents
 ```

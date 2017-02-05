@@ -1,5 +1,5 @@
 using Compat
-using English
+using EnglishText
 
 using Base.Test
 

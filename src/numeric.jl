@@ -84,7 +84,7 @@ end
 Convert ``n`` to English, given that ``0 \\le n < 10^{66}``.
 
 ```jldoctest
-julia> using English
+julia> using EnglishText
 
 julia> english(16)
 "sixteen"
@@ -116,7 +116,7 @@ Convert `data` to an integral type. This function has the guarantee that
 guaranteed to work well or throw exceptions on other inputs.
 
 ```jldoctest
-julia> using English
+julia> using EnglishText
 
 julia> unenglish(Int, "sixteen")
 16

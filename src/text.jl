@@ -67,7 +67,7 @@ mark is considered to delimit a sentence. This is of course prone to error, as
 some full stops are used for abbreviations and not for delimiting sentences.
 
 ```jldoctest
-julia> using English
+julia> using EnglishText
 
 julia> for s in sentences("Hi! Iterate over sentences. OK?")
            println(s)
