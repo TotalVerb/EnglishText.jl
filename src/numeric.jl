@@ -46,8 +46,10 @@ function reverse_power_lookup(powers)
     result
 end
 
-const REVERSE_WORD = reverse_word_lookup(ONES, TEENS, TENS)
-const REVERSE_POWER = reverse_power_lookup(POWERS)
+function __init__()
+    global const REVERSE_WORD = reverse_word_lookup(ONES, TEENS, TENS)
+    global const REVERSE_POWER = reverse_power_lookup(POWERS)
+end
 
 
 """
