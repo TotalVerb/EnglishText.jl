@@ -1,6 +1,6 @@
-Most of the Currencies.jl package is licensed under the MIT "Expat" License:
+Most of the EnglishText.jl package is licensed under the MIT "Expat" License:
 
-> Copyright (c) 2015, 2016: Fengyang Wang.
+> Copyright (c) 2015, 2016, 2017: Fengyang Wang.
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal

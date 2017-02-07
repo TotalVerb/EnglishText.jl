@@ -12,9 +12,10 @@ module Articulate
 export indefinite
 
 using JSON
+using Compat
 
 const RAW_DATA = JSON.parsefile(
-    joinpath(Pkg.dir("EnglishText"), "data", "articles.json"))
+    joinpath(dirname(@__DIR__), "data", "articles.json"))
 
 @enum Article a an
 
