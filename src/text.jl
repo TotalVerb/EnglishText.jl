@@ -10,7 +10,9 @@ module Text
 
 export sentences
 
-abstract Sentence
+using Compat
+
+@compat abstract type Sentence end
 
 immutable TextSentence <: Sentence
     data::String
