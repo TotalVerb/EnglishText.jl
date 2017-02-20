@@ -131,7 +131,7 @@ const A17 = Set([
     "albino", "generalissimo", "manifesto", "archipelago", "ghetto", "medico",
     "armadillo", "guano", "octavo", "commando", "inferno", "photo", "ditto",
     "jumbo", "pro", "dynamo", "lingo", "quarto", "embryo", "lumbago", "rhino",
-    "fiasco", "magneto", "stylo"])
+    "fiasco", "magneto", "stylo", "macro"])
 
 # table A.18 -o to -os (ang.) or -i (cls)
 const A18 = Set([
