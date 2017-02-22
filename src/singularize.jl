@@ -39,6 +39,8 @@ const SINGULARIZE_RULES = [
     r"([ti])a$"             => s"\1um",
     r"s$"                   => s""]
 
+const IGNORE_SUFFIXES = [" General", "-in-law"]
+
 """
     singularize(word)
 
@@ -57,6 +59,13 @@ julia> singularize("data")
 ```
 """
 function singularize(s::String)
+    # handle cases like Attorneys General, children-in-law
+    for suffix in IGNORE_SUFFIXES
+        if endswith(s, suffix)
+            return singularize(stem(s, length(suffix))) * suffix
+        end
+    end
+
     # irregular words
     for (singular, plural) in IRREGULAR_CLS
         if plural == s
@@ -69,7 +78,7 @@ function singularize(s::String)
     end
     # singular words ending in s
     if endswith(s, "ses")
-        chopped = stem(s, 2, "")
+        chopped = stem(s, 2)
         if chopped ∈ SINGLE_S
             return chopped
         end

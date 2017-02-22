@@ -83,6 +83,8 @@ end
 
 
 """
+    english(n::Integer)
+
 Convert ``n`` to English, given that ``0 \\le n < 10^{66}``.
 
 ```jldoctest

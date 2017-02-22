@@ -252,7 +252,31 @@ julia> pluralize("radius", classical=false)
 "radiuses"
 ```
 """
-function pluralize(word; classical=true)
+function pluralize(word::String; classical=true)
+    words = split(word, " ")
+    if isempty(words)
+        throw(ArgumentError("Cannot pluralize the empty string."))
+    elseif isempty(words[end])
+        throw(ArgumentError(string(
+            "Trailing whitespace in argument $(repr(word)) to ",
+            "pluralize.")))
+    elseif length(words) == 1
+        pluralize_single_word(words[1], classical)
+    else
+        lastword = words[end]
+        firstwords = join(words[1:end-1], " ")
+        if lastword == "General" && !(firstwords ∈ A26)
+            string(pluralize(firstwords), " ", lastword)
+        else
+            string(firstwords, " ", pluralize_single_word(lastword, classical))
+        end
+    end
+end
+pluralize(word; classical=true) = pluralize(String(word); classical=classical)
+
+pluralize_single_word(word, classical::Bool) =
+    pluralize_single_word(String(word), classical)
+function pluralize_single_word(word::String, classical::Bool)::String
     if isnoninflecting(word, classical)
         # words that do not inflect
         return word
@@ -268,6 +292,12 @@ function pluralize(word; classical=true)
     irr = suffix_inflect(SUFFIX_IRREGULAR, word)
     if !isnull(irr)
         return get(irr)
+    end
+
+    # -in-law
+    if endswith(word, "-in-law")
+        return string(pluralize_single_word(word[1:end-7], classical),
+                      "-in-law")
     end
 
     # classical inflections, retained
@@ -320,7 +350,6 @@ function pluralize(word; classical=true)
         return word * "es"
     end
 
-    # part 12 not implemented yet
     # just add s
     word * "s"
 end
