@@ -13,7 +13,7 @@ var documenterSearchIndex = {"docs": [
     "page": "EnglishText.jl Documentation",
     "title": "EnglishText.jl Documentation",
     "category": "section",
-    "text": ""
+    "text": "Many applications display information to readers in prose format instead of tabular format. It is often important to generate human-readable, grammatically correct prose. However, taking care of grammatical special cases is tedious.EnglishText.jl solves this problem by providing a variety of convenient utility functions. It uses established algorithms where available. The precise methods used are documented in the modules themselves.EnglishText.jl uses a modular approach. Applications not requiring all the exports may use a submodule, such as EnglishText.ItemLists, instead of the entire package.EnglishText.jl aims toprovide a convenient, universally useful approach to abstracting away grammatical special cases\nbe self-documenting where possible, but well-documented nevertheless\nnot have unnecessary performance bottlenecksNote that this is not a natural language processing package and does not aim to include an English parser."
 },
 
 {
@@ -69,7 +69,7 @@ var documenterSearchIndex = {"docs": [
     "page": "EnglishText.jl Documentation",
     "title": "EnglishText.Pluralize.pluralize",
     "category": "Function",
-    "text": "pluralize(word; classical=true)\n\nPluralize a word (given in canonical capitalization) using heuristics and lists of exceptions.\n\njulia> using EnglishText\n\njulia> pluralize(\"fox\")\n\"foxes\"\n\n\n\n"
+    "text": "pluralize(word; classical=true)\n\nPluralize a singular noun word (given in canonical capitalization) using heuristics and lists of exceptions. If word is not a singular noun, this function may give strange results.\n\nIf classical is set to true, then the classical (i.e. inherited from Latin or Greek) pluralization is chosen instead of the anglicized pluralization. As an example, the classical plural of \"vertex\" is \"vertices\", but the anglicized plural is \"vertexes\". By default, the classical pluralization is used.\n\njulia> using EnglishText\n\njulia> pluralize(\"fox\")\n\"foxes\"\n\njulia> pluralize(\"radius\")\n\"radii\"\n\njulia> pluralize(\"radius\", classical=false)\n\"radiuses\"\n\n\n\n"
 },
 
 {
@@ -77,7 +77,7 @@ var documenterSearchIndex = {"docs": [
     "page": "EnglishText.jl Documentation",
     "title": "EnglishText.Pluralize.singularize",
     "category": "Function",
-    "text": "singularize(word)\n\nUnpluralize a plural noun (given in canonical capitalization) using heuristics and lists of exceptions.\n\njulia> using EnglishText\n\njulia> singularize(\"foxes\")\n\"fox\"\n\njulia> singularize(\"data\")\n\"datum\"\n\n\n\n"
+    "text": "singularize(word)\n\nUnpluralize a plural noun (given in canonical capitalization) using heuristics and lists of exceptions. If the given word is not a plural noun, the result may be unpredictable.\n\njulia> using EnglishText\n\njulia> singularize(\"foxes\")\n\"fox\"\n\njulia> singularize(\"data\")\n\"datum\"\n\n\n\n"
 },
 
 {
@@ -93,7 +93,7 @@ var documenterSearchIndex = {"docs": [
     "page": "EnglishText.jl Documentation",
     "title": "EnglishText.ItemLists.ItemList",
     "category": "Constant",
-    "text": "ItemList(objects, connective=Sum())\n\nA list of items or adjectives, which supports printing in standard English format.\n\njulia> using EnglishText\n\njulia> ItemList([\"apples\", \"oranges\"])\napples and oranges\n\njulia> ItemList([\"animal\", \"plant\"], Disjunction())\nanimal or plant\n\njulia> ItemList([\"red\", \"blue\", \"white\"], Conjunction())\nred, blue, and white\n\n\n\n"
+    "text": "ItemList(objects, connective=Sum())\n\nA list of items or adjectives, which supports printing in standard English format. The first argument objects should be an iterator over some number of strings or other objects, including EnglishText.ItemQuantity objects.\n\nThe second argument connective should be one of:\n\nSum(), which represents a list of nouns in a collection of things\nDisjunction(), which represents a list of traits (typically adjectives or adverbs, but possibly also verbs or nouns) for which at least one should be satisfied\nConjunction(), which represents a list of traits that should all be satisfied\n\nIf omitted, connective is set to Sum().\n\njulia> using EnglishText\n\njulia> ItemList([\"apples\", \"oranges\"])\napples and oranges\n\njulia> ItemList([ItemQuantity(2, \"pencil\"), ItemQuantity(1, \"pen\")])\n2 pencils and 1 pen\n\njulia> ItemList([\"animal\", \"plant\"], Disjunction())\nanimal or plant\n\njulia> ItemList([\"red\", \"blue\", \"white\"], Conjunction())\nred, blue, and white\n\njulia> \"Help us use and test this software.\"\n\"Help us use and test this software.\"\n\n\n\n"
 },
 
 {
