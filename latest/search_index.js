@@ -73,11 +73,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "index.html#EnglishText.Pluralize.singularize",
+    "page": "EnglishText.jl Documentation",
+    "title": "EnglishText.Pluralize.singularize",
+    "category": "Function",
+    "text": "singularize(word)\n\nUnpluralize a plural noun (given in canonical capitalization) using heuristics and lists of exceptions.\n\njulia> using EnglishText\n\njulia> singularize(\"foxes\")\n\"fox\"\n\njulia> singularize(\"data\")\n\"datum\"\n\n\n\n"
+},
+
+{
     "location": "index.html#Quantities-and-Pluralization-1",
     "page": "EnglishText.jl Documentation",
     "title": "Quantities and Pluralization",
     "category": "section",
-    "text": "ItemQuantity\npluralize"
+    "text": "ItemQuantity\npluralize\nsingularize"
 },
 
 {
@@ -110,6 +118,14 @@ var documenterSearchIndex = {"docs": [
     "title": "Parsing Sentences",
     "category": "section",
     "text": "sentences"
+},
+
+{
+    "location": "index.html#Citations-1",
+    "page": "EnglishText.jl Documentation",
+    "title": "Citations",
+    "category": "section",
+    "text": "Conway, D. M. (1998, August). An algorithmic approach to english pluralization. In Proceedings of the Second Annual Perl Conference."
 },
 
 ]}
