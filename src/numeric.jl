@@ -39,18 +39,15 @@ function reverse_word_lookup(ones, teens, tens)
 end
 
 function reverse_power_lookup(powers)
-    result = Dict{String, BigInt}()
+    result = Dict{String, Int}()
     for (i, o) in enumerate(powers)
-        result[o] = BigInt(1000)^i
+        result[o] = 3i
     end
     result
 end
 
-function __init__()
-    global const REVERSE_WORD = reverse_word_lookup(ONES, TEENS, TENS)
-    global const REVERSE_POWER = reverse_power_lookup(POWERS)
-end
-
+const REVERSE_WORD = reverse_word_lookup(ONES, TEENS, TENS)
+const REVERSE_POWER = reverse_power_lookup(POWERS)
 
 """
 Convert ``n`` to English, given that ``0 < n < 100``.
@@ -126,7 +123,7 @@ julia> unenglish(Int, "sixteen")
 16
 ```
 """
-function unenglish{T<:Integer}(::Type{T}, data::AbstractString)
+function unenglish{T<:Integer}(::Type{T}, data::AbstractString)::T
     words = split(data)
     bigpart::T = zero(T)
     smallpart::T = zero(T)
@@ -135,11 +132,11 @@ function unenglish{T<:Integer}(::Type{T}, data::AbstractString)
         for piece in pieces
             piece = lowercase(piece)
             if haskey(REVERSE_WORD, piece)
-                smallpart += T(REVERSE_WORD[piece])
+                smallpart += REVERSE_WORD[piece]
             elseif piece == "hundred"
-                smallpart *= T(100)
+                smallpart *= 100
             elseif haskey(REVERSE_POWER, piece)
-                bigpart += T(REVERSE_POWER[piece] * smallpart)
+                bigpart += T(10) ^ REVERSE_POWER[piece] * smallpart
                 smallpart = zero(T)
             end
         end
