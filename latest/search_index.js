@@ -37,7 +37,7 @@ var documenterSearchIndex = {"docs": [
     "page": "EnglishText.jl Documentation",
     "title": "EnglishText.Numeric.english",
     "category": "Function",
-    "text": "Convert n to English, given that 0 le n  10^66.\n\njulia> using EnglishText\n\njulia> english(16)\n\"sixteen\"\n\n\n\n"
+    "text": "english(n::Integer)\n\nConvert n to English, given that 0 le n  10^66.\n\njulia> using EnglishText\n\njulia> english(16)\n\"sixteen\"\n\n\n\n"
 },
 
 {
