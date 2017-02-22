@@ -10,7 +10,7 @@ Currently this package includes six features:
  - `english` for converting a positive integer to an English-language wordy
    representation, and the inverse function `unenglish` to convert the wordy
    representation back.
- - `pluralize` to pluralize a noun
+ - `pluralize` to pluralize a noun, and the inverse function `singularize`
  - `ItemList` to create a list of objects
  - `ItemQuantity` to associate a noun with a number
  - `sentences` to iterate over the sentences of a text

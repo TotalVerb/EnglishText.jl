@@ -21,6 +21,7 @@ unenglish
 ```@docs
 ItemQuantity
 pluralize
+singularize
 ```
 
 ## Lists of Nouns and Adjectives
@@ -34,3 +35,8 @@ ItemList
 ```@docs
 sentences
 ```
+
+## Citations
+
+- Conway, D. M. (1998, August). An algorithmic approach to english
+  pluralization. In Proceedings of the Second Annual Perl Conference.
