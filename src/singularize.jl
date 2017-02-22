@@ -43,7 +43,8 @@ const SINGULARIZE_RULES = [
     singularize(word)
 
 Unpluralize a plural noun (given in canonical capitalization) using heuristics
-and lists of exceptions.
+and lists of exceptions. If the given `word` is not a plural noun, the result
+may be unpredictable.
 
 ```jldoctest
 julia> using EnglishText

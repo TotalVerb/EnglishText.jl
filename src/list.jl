@@ -12,11 +12,26 @@ immutable Sum end
 immutable Conjunction end
 immutable Disjunction end
 
+# FIXME: used in docs only
+import EnglishText
+
 """
     ItemList(objects, connective=Sum())
 
 A list of items or adjectives, which supports printing in standard English
-format.
+format. The first argument `objects` should be an iterator over some number of
+strings or other objects, including [`EnglishText.ItemQuantity`](@ref) objects.
+
+The second argument `connective` should be one of:
+
+- `Sum()`, which represents a list of nouns in a collection of things
+- `Disjunction()`, which represents a list of traits (typically adjectives or
+  adverbs, but possibly also verbs or nouns) for which at least one should be
+  satisfied
+- `Conjunction()`, which represents a list of traits that should all be
+  satisfied
+
+If omitted, `connective` is set to `Sum()`.
 
 ```jldoctest
 julia> using EnglishText
@@ -24,11 +39,17 @@ julia> using EnglishText
 julia> ItemList(["apples", "oranges"])
 apples and oranges
 
+julia> ItemList([ItemQuantity(2, "pencil"), ItemQuantity(1, "pen")])
+2 pencils and 1 pen
+
 julia> ItemList(["animal", "plant"], Disjunction())
 animal or plant
 
 julia> ItemList(["red", "blue", "white"], Conjunction())
 red, blue, and white
+
+julia> "Help us $(ItemList(["use", "test"], Conjunction())) this software."
+"Help us use and test this software."
 ```
 """
 immutable ItemList{T}

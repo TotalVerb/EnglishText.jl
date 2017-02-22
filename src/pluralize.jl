@@ -229,14 +229,27 @@ end
 """
     pluralize(word; classical=true)
 
-Pluralize a word (given in canonical capitalization) using heuristics and lists
-of exceptions.
+Pluralize a singular noun `word` (given in canonical capitalization) using
+heuristics and lists of exceptions. If `word` is not a singular noun, this
+function may give strange results.
+
+If `classical` is set to `true`, then the classical (i.e. inherited from Latin
+or Greek) pluralization is chosen instead of the anglicized pluralization. As
+an example, the classical plural of `"vertex"` is `"vertices"`, but the
+anglicized plural is `"vertexes"`. By default, the classical pluralization is
+used.
 
 ```jldoctest
 julia> using EnglishText
 
 julia> pluralize("fox")
 "foxes"
+
+julia> pluralize("radius")
+"radii"
+
+julia> pluralize("radius", classical=false)
+"radiuses"
 ```
 """
 function pluralize(word; classical=true)
