@@ -44,7 +44,6 @@ const IRREGULAR_CLS = merge(IRREGULAR_ANG, Dict(
     "brother" => "brethren",
     "cow" => "kine",
     "die" => "dice",
-    "genie" => "genii",
     "money" => "monies",
     "octopus" => "octopodes"))
 
@@ -58,7 +57,7 @@ const WORD_NOINFLECT = Set([
     "trout", "diabetes", "mews", "tuna", "djinn", "mumps", "whiting", "eland",
     "news", "wildebeest", "elk", "pincers"])
 
-# table A.3 -- currently unused
+# table A.3 — currently used only for unpluralization
 const SINGLE_S = Set([
     "polis", "asbestos", "glottis", "rhinoceros", "canvas", "lens", "chaos",
     "ibis", "marquis", "caddis", "epidermis", "cannabis", "cosmos", "pathos",
@@ -192,8 +191,9 @@ const SUFFIX_CLASSICAL = Dict(
 
 const SUFFIX_COMMON = Dict(
     r"[cs]h$" => (1, "hes"),
-    r"ss$" => (2, "sses"),
-    r"x$" => (1, "xes"),
+    r"[xs]$" => (0, "es"),
+    r"iz$" => (2, "izzes"),
+    r"[^i]z$" => (1, "zes"),
     r"[aeiou]y$" => (1, "ys"),
     r"[A-Z].*y$" => (1, "ys"),
     r"y$" => (1, "ies"),
@@ -292,7 +292,7 @@ function pluralize(word; classical=true)
         end
     end
 
-    # suffixes ending in -es, -f, -fe, -y, -ys
+    # suffixes ending in -ss, -es, -f, -fe, -y, -ys
     com = suffix_inflect(SUFFIX_COMMON, word)
     if !isnull(com)
         return get(com)
@@ -312,7 +312,9 @@ function pluralize(word; classical=true)
     word * "s"
 end
 
+include("singularize.jl")
+
 end  # module Pluralize
 
-import .Pluralize: pluralize
-export pluralize
+import .Pluralize: pluralize, singularize
+export pluralize, singularize
