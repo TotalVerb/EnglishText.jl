@@ -92,7 +92,7 @@ var documenterSearchIndex = {"docs": [
     "location": "index.html#EnglishText.ItemLists.ItemList",
     "page": "EnglishText.jl Documentation",
     "title": "EnglishText.ItemLists.ItemList",
-    "category": "Constant",
+    "category": "Type",
     "text": "ItemList(objects, connective=Sum())\n\nA list of items or adjectives, which supports printing in standard English format. The first argument objects should be an iterator over some number of strings or other objects, including EnglishText.ItemQuantity objects.\n\nThe second argument connective should be one of:\n\nSum(), which represents a list of nouns in a collection of things\nDisjunction(), which represents a list of traits (typically adjectives or adverbs, but possibly also verbs or nouns) for which at least one should be satisfied\nConjunction(), which represents a list of traits that should all be satisfied\n\nIf omitted, connective is set to Sum().\n\njulia> using EnglishText\n\njulia> ItemList([\"apples\", \"oranges\"])\napples and oranges\n\njulia> ItemList([ItemQuantity(2, \"pencil\"), ItemQuantity(1, \"pen\")])\n2 pencils and 1 pen\n\njulia> ItemList([\"animal\", \"plant\"], Disjunction())\nanimal or plant\n\njulia> ItemList([\"red\", \"blue\", \"white\"], Conjunction())\nred, blue, and white\n\njulia> \"Help us use and test this software.\"\n\"Help us use and test this software.\"\n\n\n\n"
 },
 
