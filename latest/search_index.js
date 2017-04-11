@@ -121,6 +121,22 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "index.html#EnglishText.Semantics.SemanticText",
+    "page": "EnglishText.jl Documentation",
+    "title": "EnglishText.Semantics.SemanticText",
+    "category": "Type",
+    "text": "An object representing a string of text but with additional semantic information. These objects convert to Strings through the string function, but also typically support other operations.\n\n\n\n"
+},
+
+{
+    "location": "index.html#Internals-1",
+    "page": "EnglishText.jl Documentation",
+    "title": "Internals",
+    "category": "section",
+    "text": "SemanticText"
+},
+
+{
     "location": "index.html#Citations-1",
     "page": "EnglishText.jl Documentation",
     "title": "Citations",
