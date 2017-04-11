@@ -58,6 +58,12 @@ ItemList
 sentences
 ```
 
+## Internals
+
+```@docs
+SemanticText
+```
+
 ## Citations
 
 - Conway, D. M. (1998, August). An algorithmic approach to english

@@ -7,6 +7,7 @@
 module Quantities
 
 using ..Pluralize
+using ..Semantics
 
 export ItemQuantity, isnothing
 
@@ -25,7 +26,7 @@ julia> ItemQuantity(1, "standard canine")
 1 standard canine
 ```
 """
-immutable ItemQuantity
+immutable ItemQuantity <: SemanticText
     count::Int
     noun::String
 end

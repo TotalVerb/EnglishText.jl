@@ -6,6 +6,8 @@
 
 module ItemLists
 
+using ..Semantics
+
 export ItemList, Sum, Conjunction, Disjunction
 
 immutable Sum end
@@ -52,7 +54,7 @@ julia> "Help us $(ItemList(["use", "test"], Conjunction())) this software."
 "Help us use and test this software."
 ```
 """
-immutable ItemList{T}
+immutable ItemList{T} <: SemanticText
     objs
     connective::T
 end

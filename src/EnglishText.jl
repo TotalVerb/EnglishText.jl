@@ -3,6 +3,7 @@ __precompile__()
 module EnglishText
 
 # code to text
+include("semantics.jl")
 include("articulate.jl")
 include("list.jl")
 include("numeric.jl")
