@@ -3,6 +3,7 @@
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://totalverb.github.io/EnglishText.jl/stable)
 [![](https://img.shields.io/badge/docs-latest-blue.svg)](https://totalverb.github.io/EnglishText.jl/latest)
 [![Build Status](https://travis-ci.org/TotalVerb/EnglishText.jl.svg?branch=master)](https://travis-ci.org/TotalVerb/EnglishText.jl)
+[![codecov.io](http://codecov.io/github/TotalVerb/EnglishText.jl/coverage.svg?branch=master)](http://codecov.io/github/TotalVerb/EnglishText.jl?branch=master)
 
 Currently this package includes six features:
 
