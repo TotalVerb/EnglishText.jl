@@ -7,7 +7,11 @@ julia:
     - 0.5
     - 0.6
     - nightly
+script:
+    - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+    - julia --compilecache=no -e 'Pkg.clone(pwd()); Pkg.build("EnglishText"); Pkg.test("EnglishText"; coverage=true)'
+    - julia -e 'using EnglishText'  # loading after precompiled
 after_success:
     - julia -e 'Pkg.add("Documenter")'
-    - julia -e 'cd(Pkg.dir("EnglishText")); Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())';
+    - julia -e 'cd(Pkg.dir("EnglishText")); Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
     - julia -e 'cd(Pkg.dir("EnglishText")); include(joinpath("docs", "make.jl"))'
