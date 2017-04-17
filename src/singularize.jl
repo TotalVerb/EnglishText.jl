@@ -18,6 +18,8 @@ const SINGULARIZE_RULES = [
     r"moves$"               => s"move",
     r"monies$"              => s"money",
     r"matrices$"            => s"matrix",
+    r"([ae])ux$"            => s"\1u",
+    r"([io])rides$"         => s"\1ris",
     r"i$"                   => s"us",
     r"ae$"                  => s"a",
     r"podes$"               => s"pus",
@@ -28,6 +30,7 @@ const SINGULARIZE_RULES = [
     r"shoes$"               => s"shoe",
     r"oes$"                 => s"o",
     r"([ml])ice$"           => s"\1ouse",
+    r"([iay])nges$"         => s"\1nx",
     r"(x|ch|ss|sh)es$"      => s"\1",
     r"movies$"              => s"movie",
     r"([^aeiouy]|qu)ies$"   => s"\1y",
@@ -35,8 +38,12 @@ const SINGULARIZE_RULES = [
     r"([ht])ives$"          => s"\1ive",
     r"([^f])ves$"           => s"\1fe",
     r"[us]ses$"             => s"us",
+    r"ises$"                => s"is",
     r"ses$"                 => s"sis",
+    r"mina$"                => s"men",
+    r"([aegmosu])ata$"      => s"\1a",
     r"([ti])a$"             => s"\1um",
+    r"a$"                   => s"on",
     r"s$"                   => s""]
 
 const IGNORE_SUFFIXES = [" General", "-in-law"]
@@ -83,6 +90,14 @@ function singularize(s::String)
             return chopped
         end
     end
+
+    # A18: -i to -o (cls)
+    for w in A18
+        if endswith(s, stem(w, 1, "i"))
+            return stem(s, 1, "o")
+        end
+    end
+
     for (regex, subst) ∈ SINGULARIZE_RULES
         if ismatch(regex, s)
             return replace(s, regex, subst)

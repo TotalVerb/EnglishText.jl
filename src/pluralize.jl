@@ -323,7 +323,7 @@ function pluralize_single_word(word::String, classical::Bool)::String
         elseif word ∈ A12
             return stem(word, 1, "ata")
         elseif word ∈ A16
-            return stem(word, 2, "ises")
+            return stem(word, 2, "ides")
         elseif word ∈ A22
             return stem(word, 2, "i")
         elseif word ∈ A18  # nb: A23 handled as non-inflecting
