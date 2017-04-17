@@ -165,8 +165,9 @@ const A23 = Set([
     "apparatus", "impetus", "prospectus", "cantus", "nexus", "sinus", "coitus",
     "plexus", "status", "hiatus"])
 
-# table A24 - to -i
-const A24 = ("afreet", "afrit", "efreet")
+# in the paper cited, A.24. is used for ifrit to ifriti
+# a Google ngrams search reveals no use of ifriti therefore we decide to omit
+# A.24 even in classical mode
 
 # table A.25 - to -im
 const A25 = ("cherub", "goy", "seraph")
@@ -253,17 +254,15 @@ julia> pluralize("radius", classical=false)
 ```
 """
 function pluralize(word::String; classical=true)
-    words = split(word, " ")
+    words = split(word)
     if isempty(words)
         throw(ArgumentError("Cannot pluralize the empty string."))
-    elseif isempty(words[end])
-        throw(ArgumentError(string(
-            "Trailing whitespace in argument $(repr(word)) to ",
-            "pluralize.")))
     elseif length(words) == 1
+        @assert !isempty(words[1])
         pluralize_single_word(words[1], classical)
     else
         lastword = words[end]
+        @assert !isempty(lastword)
         firstwords = join(words[1:end-1], " ")
         if lastword == "General" && !(firstwords ∈ A26)
             string(pluralize(firstwords), " ", lastword)
@@ -328,8 +327,6 @@ function pluralize_single_word(word::String, classical::Bool)::String
             return stem(word, 2, "i")
         elseif word ∈ A18  # nb: A23 handled as non-inflecting
             return stem(word, 1, "i")
-        elseif word ∈ A24
-            return word * "i"
         elseif word ∈ A25
             return word * "im"
         end

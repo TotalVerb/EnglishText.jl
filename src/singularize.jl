@@ -12,16 +12,10 @@
 export singularize
 
 const SINGULARIZE_RULES = [
-    r"geese$"               => s"goose",
-    r"feet$"                => s"foot",
-    r"men$"                 => s"man",
     r"moves$"               => s"move",
     r"monies$"              => s"money",
     r"matrices$"            => s"matrix",
-    r"([ae])ux$"            => s"\1u",
     r"([io])rides$"         => s"\1ris",
-    r"i$"                   => s"us",
-    r"ae$"                  => s"a",
     r"podes$"               => s"pus",
     r"(qu|wh)izzes$"        => s"\1iz",
     r"zes"                  => s"z",
@@ -40,11 +34,19 @@ const SINGULARIZE_RULES = [
     r"[us]ses$"             => s"us",
     r"ises$"                => s"is",
     r"ses$"                 => s"sis",
+    r"s$"                   => s"",
     r"mina$"                => s"men",
     r"([aegmosu])ata$"      => s"\1a",
     r"([ti])a$"             => s"\1um",
     r"a$"                   => s"on",
-    r"s$"                   => s""]
+    r"geese$"               => s"goose",
+    r"ae$"                  => s"a",
+    r"i$"                   => s"us",
+    r"im$"                  => s"",
+    r"men$"                 => s"man",
+    r"feet$"                => s"foot",
+    r"([ae])ux$"            => s"\1u"
+]
 
 const IGNORE_SUFFIXES = [" General", "-in-law"]
 

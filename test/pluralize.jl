@@ -1,4 +1,5 @@
 const UNIVERSAL_PLURALS = [
+    "afreet" => "afreets",
     "agency" => "agencies",
     "bacterium" => "bacteria",
     "bias" => "biases",
@@ -47,6 +48,7 @@ const CLASSICAL_PLURALS = [
     "milieu" => "milieux",
     "money" => "monies",
     "octopus" => "octopodes",  # "octopi" not standard Latin
+    "seraph" => "seraphim",
     "soprano" => "soprani",
     "vertex" => "vertices"]
 
@@ -71,6 +73,7 @@ const MODERN_PLURALS = [
     "milieu" => "milieus",
     "money" => "moneys",
     "octopus" => "octopuses",
+    "seraph" => "seraphs",
     "soprano" => "sopranos",
     "vertex" => "vertexes"]
 
@@ -91,7 +94,10 @@ const MODERN_PLURALS = [
     # actually a good idea — it might be safer just to return the string
     # untouched
     @test_throws ArgumentError pluralize("")
-    @test_throws ArgumentError pluralize("bar ")
+
+    # currently we tolerate trailing whitespace, but what we return does not
+    # have it — this is again a decision we should rethink
+    @test pluralize("bar ") == "bars"
 
     # check that it works with a different string type
     # in this case, SubString
