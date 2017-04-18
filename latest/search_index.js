@@ -61,7 +61,23 @@ var documenterSearchIndex = {"docs": [
     "page": "EnglishText.jl Documentation",
     "title": "EnglishText.Quantities.ItemQuantity",
     "category": "Type",
-    "text": "ItemQuantity(n::Integer, item::AbstractString)\n\nRepresents a quantity of n occurrences of item.\n\njulia> using EnglishText\n\njulia> ItemQuantity(2, \"apple\")\n2 apples\n\njulia> ItemQuantity(1, \"standard canine\")\n1 standard canine\n\n\n\n"
+    "text": "ItemQuantity(n::Integer, item::AbstractString)\n\nRepresents a quantity of n occurrences of item. Although this is not a collection, for ease of use, it implements some of the standard collection methods length (for number of items) and isempty (for whether there are no items).\n\njulia> using EnglishText\n\njulia> ItemQuantity(2, \"apple\")\n2 apples\n\njulia> ItemQuantity(1, \"standard canine\")\n1 standard canine\n\n\n\n"
+},
+
+{
+    "location": "index.html#Base.isempty-Tuple{EnglishText.Quantities.ItemQuantity}",
+    "page": "EnglishText.jl Documentation",
+    "title": "Base.isempty",
+    "category": "Method",
+    "text": "isempty(quantity::ItemQuantity)\n\nReturn true if the given ItemQuantity represents no items.\n\njulia> using EnglishText\n\njulia> isempty(ItemQuantity(0, \"orange\"))\ntrue\n\njulia> isempty(ItemQuantity(4, \"person\"))\nfalse\n\n\n\n"
+},
+
+{
+    "location": "index.html#Base.length-Tuple{EnglishText.Quantities.ItemQuantity}",
+    "page": "EnglishText.jl Documentation",
+    "title": "Base.length",
+    "category": "Method",
+    "text": "length(quantity::ItemQuantity)\n\nReturn the number of items represented by this quantity.\n\njulia> using EnglishText\n\njulia> length(ItemQuantity(7, \"desk\"))\n7\n\n\n\n"
 },
 
 {
@@ -85,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "EnglishText.jl Documentation",
     "title": "Quantities and Pluralization",
     "category": "section",
-    "text": "ItemQuantity\npluralize\nsingularize"
+    "text": "ItemQuantity\nisempty(::ItemQuantity)\nlength(::ItemQuantity)\npluralize\nsingularize"
 },
 
 {
