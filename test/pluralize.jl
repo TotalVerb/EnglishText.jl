@@ -115,6 +115,10 @@ end
         @test singularize(plural) == singular
     end
 
+    # we can't sensibly singularize words without singular forms; the most
+    # sensible thing is to return the argument unchanged
+    @test singularize("sand") == "sand"
+
     # check that it works with a different string type
     @test singularize(split("programming languages")[2]) == "language"
 end
