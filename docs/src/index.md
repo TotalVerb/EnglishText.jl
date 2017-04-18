@@ -42,6 +42,8 @@ unenglish
 
 ```@docs
 ItemQuantity
+isempty(::ItemQuantity)
+length(::ItemQuantity)
 pluralize
 singularize
 ```

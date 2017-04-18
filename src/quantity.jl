@@ -8,13 +8,17 @@ module Quantities
 
 using ..Pluralize
 using ..Semantics
+import Base: isempty, length
 
 export ItemQuantity, isnothing
 
 """
     ItemQuantity(n::Integer, item::AbstractString)
 
-Represents a quantity of `n` occurrences of `item`.
+Represents a quantity of `n` occurrences of `item`. Although this is not a
+collection, for ease of use, it implements some of the standard collection
+methods `length` (for number of items) and `isempty` (for whether there are no
+items).
 
 ```jldoctest
 julia> using EnglishText
@@ -32,11 +36,35 @@ immutable ItemQuantity <: SemanticText
 end
 
 """
-    isnothing(quantity::ItemQuantity)
+    isempty(quantity::ItemQuantity)
 
 Return `true` if the given `ItemQuantity` represents no items.
+
+```jldoctest
+julia> using EnglishText
+
+julia> isempty(ItemQuantity(0, "orange"))
+true
+
+julia> isempty(ItemQuantity(4, "person"))
+false
+```
 """
-isnothing(quantity::ItemQuantity) = quantity.count == 0
+isempty(quantity::ItemQuantity) = quantity.count == 0
+
+"""
+    length(quantity::ItemQuantity)
+
+Return the number of items represented by this quantity.
+
+```jldoctest
+julia> using EnglishText
+
+julia> length(ItemQuantity(7, "desk"))
+7
+```
+"""
+length(quantity::ItemQuantity) = quantity.count
 
 function Base.show(io::IO, quantity::ItemQuantity)
     print(io, quantity.count)
@@ -47,6 +75,8 @@ function Base.show(io::IO, quantity::ItemQuantity)
         print(io, pluralize(quantity.noun))
     end
 end
+
+Base.@deprecate_binding isnothing isempty
 
 end
 

@@ -12,4 +12,11 @@ end
     @test string(ItemQuantity(0, "Julia library")) == "0 Julia libraries"
 end
 
+@testset "Collection-like Interface" begin
+    @test length(ItemQuantity(0, "human")) == 0
+    @test length(ItemQuantity(4, "line")) == 4
+    @test isempty(ItemQuantity(0, "train"))
+    @test !isempty(ItemQuantity(1, "train"))
+end
+
 end
