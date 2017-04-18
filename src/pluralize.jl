@@ -54,8 +54,8 @@ const WORD_NOINFLECT = Set([
     "carp", "herpes", "scissors", "chassis", "high-jinks", "sea-bass",
     "clippers", "homework", "series", "cod", "innings", "shears", "contretemps",
     "jackanapes", "species", "corps", "mackerel", "swine", "debris", "measles",
-    "trout", "diabetes", "mews", "tuna", "djinn", "mumps", "whiting", "eland",
-    "news", "wildebeest", "elk", "pincers"])
+    "moose", "trout", "diabetes", "mews", "tuna", "djinn", "mumps", "whiting",
+    "eland", "news", "wildebeest", "elk", "pincers"])
 
 # table A.3 — currently used only for unpluralization
 const SINGLE_S = Set([

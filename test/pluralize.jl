@@ -21,6 +21,7 @@ const UNIVERSAL_PLURALS = [
     "iron" => "irons",
     "louse" => "lice",
     "man" => "men",
+    "moose" => "moose",
     "mother-in-law" => "mothers-in-law",
     "macro" => "macros",
     "neo" => "neos",
