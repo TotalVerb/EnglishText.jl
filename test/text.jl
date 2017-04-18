@@ -23,6 +23,10 @@
         "If they but knew it, almost all men in their degree, some time or ",
         "other, cherish very nearly the same feelings towards the ocean ",
         "with me.")
+
+    # test ending without punctuation
+    @test [string(x) for x = sentences("Look! It's Iron Man")] ==
+        ["Look!", "It's Iron Man"]
 end
 
 end
