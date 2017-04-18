@@ -32,6 +32,7 @@ const UNIVERSAL_PLURALS = [
     "topaz" => "topazes",
     "unicorn" => "unicorns",
     "quiz" => "quizzes",
+    "Javanese" => "Javanese",
     "Major General" => "Major Generals",
     "Postmaster General" => "Postmasters General"]
 
@@ -112,4 +113,7 @@ end
                                         MODERN_PLURALS]
         @test singularize(plural) == singular
     end
+
+    # check that it works with a different string type
+    @test singularize(split("programming languages")[2]) == "language"
 end
