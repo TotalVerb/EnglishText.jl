@@ -76,9 +76,7 @@ function Base.show(io::IO, quantity::ItemQuantity)
     end
 end
 
-Base.@deprecate_binding isnothing isempty
-
 end
 
-import .Quantities: ItemQuantity, isnothing
-export ItemQuantity, isnothing
+import .Quantities: ItemQuantity
+export ItemQuantity
