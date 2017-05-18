@@ -1,4 +1,3 @@
-using Compat
 using EnglishText
 
 using Base.Test

@@ -10,11 +10,9 @@ module Text
 
 export sentences
 
-using Compat
+abstract type Sentence end
 
-@compat abstract type Sentence end
-
-immutable TextSentence <: Sentence
+struct TextSentence <: Sentence
     data::String
 end
 
@@ -25,7 +23,7 @@ An iterable over the `Sentence`s contained within a block of text. The
 iteration over this iterable is guaranteed to be pure and so can be done an
 arbitrary number of times.
 """
-immutable Sentences{T}
+struct Sentences{T}
     text::T
 end
 

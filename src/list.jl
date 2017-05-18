@@ -10,9 +10,9 @@ using ..Semantics
 
 export ItemList, Sum, Conjunction, Disjunction
 
-immutable Sum end
-immutable Conjunction end
-immutable Disjunction end
+struct Sum end
+struct Conjunction end
+struct Disjunction end
 
 # FIXME: used in docs only
 import EnglishText
@@ -54,7 +54,7 @@ julia> "Help us $(ItemList(["use", "test"], Conjunction())) this software."
 "Help us use and test this software."
 ```
 """
-immutable ItemList{T} <: SemanticText
+struct ItemList{T} <: SemanticText
     objs
     connective::T
 end

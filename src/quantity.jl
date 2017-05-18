@@ -30,7 +30,7 @@ julia> ItemQuantity(1, "standard canine")
 1 standard canine
 ```
 """
-immutable ItemQuantity <: SemanticText
+struct ItemQuantity <: SemanticText
     count::Int
     noun::String
 end

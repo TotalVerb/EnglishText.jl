@@ -123,7 +123,7 @@ julia> unenglish(Int, "sixteen")
 16
 ```
 """
-function unenglish{T<:Integer}(::Type{T}, data::AbstractString)::T
+function (unenglish(::Type{T}, data::AbstractString)::T) where T <: Integer
     words = split(data)
     bigpart::T = zero(T)
     smallpart::T = zero(T)
