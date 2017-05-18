@@ -12,14 +12,13 @@ module Articulate
 export indefinite
 
 using JSON
-using Compat
 
 const RAW_DATA = JSON.parsefile(
     joinpath(dirname(@__DIR__), "data", "articles.json"))
 
 @enum Article a an
 
-type ArticleTable
+mutable struct ArticleTable
     article::Article
     prefixes::Dict{Char, ArticleTable}
 end
