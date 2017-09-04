@@ -10,7 +10,7 @@
             ["Do question marks work?", "Yes, they do."]
 
     mobydick = replace(
-        readstring(joinpath(dirname(@__DIR__), "text", "mobydick.txt")),
+        read(joinpath(dirname(@__DIR__), "text", "mobydick.txt"), String),
         "\n", " ")
     result = [string(x) for x = sentences(mobydick)]
     @test result[1] == "Call me Ishmael."
