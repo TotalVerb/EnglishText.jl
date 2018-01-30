@@ -205,7 +205,7 @@ const SUFFIX_COMMON = Dict(
 
 function fromend(word, suffixlen)
     offset = length(word) - suffixlen
-    offset == 0 ? 0 : chr2ind(word, offset)
+    offset == 0 ? 0 : nextind(word, 0, offset)
 end
 
 stem(word, suffixlen) = word[1:fromend(word, suffixlen)]
@@ -213,15 +213,15 @@ stem(word, suffixlen, rest) = stem(word, suffixlen) * rest
 
 function suffix_inflect(table, word)
     for (sfx, (offset, newsfx)) in table
-        if ismatch(sfx, word)
-            return Nullable(stem(word, offset, newsfx))
+        if contains(word, sfx)
+            return stem(word, offset, newsfx)
         end
     end
-    Nullable{typeof(word)}()
+    nothing
 end
 
 function isnoninflecting(word, classical)
-    wordmatches(re) = ismatch(re, word)
+    wordmatches(re) = contains(word, re)
     any(wordmatches, SUFFIX_NOINFLECT) ||
         word ∈ WORD_NOINFLECT ||
         classical && word ∈ A23
@@ -289,8 +289,8 @@ function pluralize_single_word(word::String, classical::Bool)::String
 
     # irregular suffix
     irr = suffix_inflect(SUFFIX_IRREGULAR, word)
-    if !isnull(irr)
-        return get(irr)
+    if irr !== nothing
+        return coalesce(irr)
     end
 
     # -in-law
@@ -313,8 +313,8 @@ function pluralize_single_word(word::String, classical::Bool)::String
     # classical inflections, anglicized
     if classical
         cls = suffix_inflect(SUFFIX_CLASSICAL, word)
-        if !isnull(cls)
-            return get(cls)
+        if cls !== nothing
+            return coalesce(cls)
         end
 
         if word ∈ A13
@@ -334,16 +334,16 @@ function pluralize_single_word(word::String, classical::Bool)::String
 
     # suffixes ending in -ss, -es, -f, -fe, -y, -ys
     com = suffix_inflect(SUFFIX_COMMON, word)
-    if !isnull(com)
-        return get(com)
+    if com !== nothing
+        return coalesce(com)
     end
 
     # suffixes ending in -o
     if word ∈ A17 || word ∈ A18
         return word * "s"
-    elseif ismatch(r"[aeiou]o$", word)
+    elseif contains(word, r"[aeiou]o$")
         return word * "s"
-    elseif ismatch(r"o$", word)
+    elseif contains(word, r"o$")
         return word * "es"
     end
 

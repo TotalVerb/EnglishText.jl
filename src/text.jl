@@ -40,22 +40,21 @@ function trynext(itr::Sentences, s)
             push!(buffer, c)
         end
         if c == '.' || c == '!' || c == '?'
-            return Nullable(TextSentence(join(buffer))), s
+            return TextSentence(join(buffer)), s
         end
     end
     if !isempty(buffer)
-        Nullable(TextSentence(join(buffer))), s
+        TextSentence(join(buffer)), s
     else
-        Nullable{TextSentence}(), s
+        nothing
     end
 end
 function Base.next(itr::Sentences, s)
     res, s = trynext(itr, s)
-    get(res), s
+    coalesce(res), s
 end
 function Base.done(itr::Sentences, s)
-    res, _ = trynext(itr, s)
-    isnull(res)
+    trynext(itr, s) === nothing
 end
 
 """

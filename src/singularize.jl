@@ -101,8 +101,8 @@ function singularize(s::String)
     end
 
     for (regex, subst) ∈ SINGULARIZE_RULES
-        if ismatch(regex, s)
-            return replace(s, regex, subst)
+        if contains(s, regex)
+            return replace(s, regex => subst)
         end
     end
     s

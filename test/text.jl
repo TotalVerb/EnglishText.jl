@@ -11,7 +11,7 @@
 
     mobydick = replace(
         read(joinpath(dirname(@__DIR__), "text", "mobydick.txt"), String),
-        "\n", " ")
+        "\n" => " ")
     result = [string(x) for x = sentences(mobydick)]
     @test result[1] == "Call me Ishmael."
     @test result[2] == string(

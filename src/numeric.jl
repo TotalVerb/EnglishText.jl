@@ -96,7 +96,7 @@ function english(n::Integer)
         "zero"
     else
         result = String[]
-        segments = digits(n, 1000)
+        segments = digits(n, base=1000)
         if segments[1] ≠ 0
             push!(result, ltt(segments[1]))
         end
