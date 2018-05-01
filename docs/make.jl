@@ -11,7 +11,7 @@ makedocs(
 )
 
 deploydocs(
-    julia = "nightly",
+    julia  = "nightly",
     repo   = "github.com/TotalVerb/EnglishText.jl.git",
     target = "build",
     deps   = nothing,
