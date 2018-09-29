@@ -1,5 +1,3 @@
-__precompile__()
-
 module EnglishText
 
 # code to text
