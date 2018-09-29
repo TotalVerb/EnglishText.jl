@@ -101,7 +101,7 @@ function singularize(s::String)
     end
 
     for (regex, subst) ∈ SINGULARIZE_RULES
-        if contains(s, regex)
+        if occursin(regex, s)
             return replace(s, regex => subst)
         end
     end

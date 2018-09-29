@@ -213,7 +213,7 @@ stem(word, suffixlen, rest) = stem(word, suffixlen) * rest
 
 function suffix_inflect(table, word)
     for (sfx, (offset, newsfx)) in table
-        if contains(word, sfx)
+        if occursin(sfx, word)
             return stem(word, offset, newsfx)
         end
     end
@@ -221,7 +221,7 @@ function suffix_inflect(table, word)
 end
 
 function isnoninflecting(word, classical)
-    wordmatches(re) = contains(word, re)
+    wordmatches(re) = occursin(re, word)
     any(wordmatches, SUFFIX_NOINFLECT) ||
         word ∈ WORD_NOINFLECT ||
         classical && word ∈ A23
@@ -341,9 +341,9 @@ function pluralize_single_word(word::String, classical::Bool)::String
     # suffixes ending in -o
     if word ∈ A17 || word ∈ A18
         return word * "s"
-    elseif contains(word, r"[aeiou]o$")
+    elseif occursin(r"[aeiou]o$", word)
         return word * "s"
-    elseif contains(word, r"o$")
+    elseif occursin(r"o$", word)
         return word * "es"
     end
 

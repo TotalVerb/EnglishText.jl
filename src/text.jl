@@ -27,34 +27,27 @@ struct Sentences{T}
     text::T
 end
 
-Base.iteratorsize(::Sentences) = Base.SizeUnknown()
-Base.start(itr::Sentences) = start(itr.text)
-
-# this is the "new iteration scheme" which combines next and done.
-function trynext(itr::Sentences, s)
+Base.IteratorSize(::Sentences) = Base.SizeUnknown()
+Base.iterate(itr::Sentences, ::Nothing) = nothing
+function Base.iterate(itr::Sentences, state::Some...)
     buffer = Char[]
     text = itr.text
-    while !done(text, s)
-        c, s = next(text, s)
+    next = iterate(text, map(something, state)...)
+    while next !== nothing
+        c, st = next
         if !isempty(buffer) || !isspace(c)
             push!(buffer, c)
         end
         if c == '.' || c == '!' || c == '?'
-            return TextSentence(join(buffer)), s
+            return TextSentence(join(buffer)), Some(st)
         end
+        next = iterate(text, st)
     end
     if !isempty(buffer)
-        TextSentence(join(buffer)), s
+        TextSentence(join(buffer)), nothing
     else
         nothing
     end
-end
-function Base.next(itr::Sentences, s)
-    res, s = trynext(itr, s)
-    coalesce(res), s
-end
-function Base.done(itr::Sentences, s)
-    trynext(itr, s) === nothing
 end
 
 """
