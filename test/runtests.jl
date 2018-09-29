@@ -1,7 +1,7 @@
 using Compat
 using EnglishText
 
-using Base.Test
+using Test
 
 @testset "Articles" begin
     @test indefinite("pig") == "a"
