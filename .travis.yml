@@ -8,7 +8,7 @@ julia:
     - nightly
 script:
     - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-    - julia --compilecache=no -e 'import Pkg; Pkg.clone(pwd()); Pkg.build("EnglishText"); Pkg.test("EnglishText"; coverage=true)'
+    - julia --compiled-modules=no -e 'import Pkg; Pkg.clone(pwd()); Pkg.build("EnglishText"); Pkg.test("EnglishText"; coverage=true)'
     - julia -e 'using EnglishText'  # loading after precompiled
 after_success:
     - julia -e 'import Pkg; Pkg.add("Documenter")'
