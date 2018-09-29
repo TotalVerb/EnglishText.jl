@@ -4,6 +4,7 @@ os:
     - linux
     - osx
 julia:
+    - release
     - nightly
 script:
     - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
