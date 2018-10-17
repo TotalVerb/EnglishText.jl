@@ -11,6 +11,6 @@ script:
     - julia --compiled-modules=no -e 'import Pkg; Pkg.clone(pwd()); Pkg.build("EnglishText"); Pkg.test("EnglishText"; coverage=true)'
     - julia -e 'using EnglishText'  # loading after precompiled
 after_success:
-    - julia -e 'import Pkg; Pkg.add("Documenter")'
+    - julia -e 'import Pkg; ps=Pkg.PackageSpec(name="Documenter", version="0.19"); Pkg.add(ps); Pkg.pin(ps)'
     - julia -e 'import Pkg; cd(Pkg.dir("EnglishText")); Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
     - julia -e 'import Pkg; cd(Pkg.dir("EnglishText")); include(joinpath("docs", "make.jl"))'
