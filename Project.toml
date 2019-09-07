@@ -1,0 +1,15 @@
+name = "EnglishText"
+uuid = "a9e4a3a0-3b51-51f6-8ce2-a898b8c5b12e"
+
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+
+[compat]
+JSON = "≥ 0.8.2"
+julia = "≥ 0.7.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
