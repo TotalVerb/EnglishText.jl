@@ -5,12 +5,21 @@ os:
     - osx
 julia:
     - 0.7
+    - 1.0
+    - 1.1
+    - 1.2
     - nightly
-script:
-    - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-    - julia --compiled-modules=no -e 'import Pkg; Pkg.clone(pwd()); Pkg.build("EnglishText"); Pkg.test("EnglishText"; coverage=true)'
-    - julia -e 'using EnglishText'  # loading after precompiled
-after_success:
-    - julia -e 'import Pkg; ps=Pkg.PackageSpec(name="Documenter", version="0.19"); Pkg.add(ps); Pkg.pin(ps)'
-    - julia -e 'import Pkg; cd(Pkg.dir("EnglishText")); Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
-    - julia -e 'import Pkg; cd(Pkg.dir("EnglishText")); include(joinpath("docs", "make.jl"))'
+notifications:
+    email: false
+
+after_success: julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(process_folder())'
+jobs:
+  include:
+    - stage: Documentation
+      julia: 1.2
+      script: julia --project=docs -e '
+          using Pkg;
+          Pkg.develop(PackageSpec(path=pwd()));
+          Pkg.instantiate();
+          include("docs/make.jl");'
+      after_success: skip

@@ -1,19 +1,17 @@
 using Documenter, EnglishText
 
-makedocs(
-    format = :html,
+makedocs(;
+    modules  = [EnglishText],
+    format   = Documenter.HTML(analytics = "UA-68884109-1"),
+    pages    = [
+        "Home" => "index.md",
+    ],
+    repo     = "https://github.com/TotalVerb/EnglishText.jl/blob/{commit}{path}#L{line}",
     sitename = "EnglishText.jl",
-    authors = "Fengyang Wang",
-    analytics = "UA-68884109-1",
-    pages = [
-        "index.md"
-    ]
+    authors  = "Fengyang Wang",
+    assets   = [],
 )
 
 deploydocs(
-    julia  = "nightly",
-    repo   = "github.com/TotalVerb/EnglishText.jl.git",
-    target = "build",
-    deps   = nothing,
-    make   = nothing,
+    repo = "github.com/TotalVerb/EnglishText.jl",
 )
