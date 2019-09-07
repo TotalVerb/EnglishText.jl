@@ -9,7 +9,6 @@ makedocs(;
     repo     = "https://github.com/TotalVerb/EnglishText.jl/blob/{commit}{path}#L{line}",
     sitename = "EnglishText.jl",
     authors  = "Fengyang Wang",
-    assets   = [],
 )
 
 deploydocs(

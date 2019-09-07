@@ -1,7 +1,6 @@
 # EnglishText
 
-[![EnglishText](http://pkg.julialang.org/badges/EnglishText_0.5.svg)](http://pkg.julialang.org/?pkg=EnglishText)
-[![EnglishText](http://pkg.julialang.org/badges/EnglishText_0.6.svg)](http://pkg.julialang.org/?pkg=EnglishText)
+[![EnglishText](https://img.shields.io/github/v/release/TotalVerb/EnglishText.jl?include_prereleases)](https://github.com/TotalVerb/EnglishText.jl)
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://totalverb.github.io/EnglishText.jl/stable)
 [![](https://img.shields.io/badge/docs-latest-blue.svg)](https://totalverb.github.io/EnglishText.jl/latest)
 [![Build Status](https://travis-ci.org/TotalVerb/EnglishText.jl.svg?branch=master)](https://travis-ci.org/TotalVerb/EnglishText.jl)
