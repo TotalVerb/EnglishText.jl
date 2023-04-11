@@ -1,10 +1,10 @@
 #=――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
     NOTE
-    The algorithm used for inflecting English words into plurals is descibed by
+    The algorithm used for inflecting English words into plurals is described by
     Damian Conway of Monash University. The original paper is accessible at
     <http://www.csse.monash.edu.au/~damian/papers/HTML/Plurals.html>
 
-    Several of the tables desribed within are obtained from
+    Several of the tables described within are obtained from
     <http://www.csse.monash.edu.au/~damian/papers/HTML/Plurals_AppendixA.html>
 
     CITATION
